@@ -19,6 +19,7 @@ import java.util.GregorianCalendar;
 public class MainActivity extends ActionBarActivity {
 
     private boolean isAlreadyActivated=false;
+    private int id=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
         Log.d("Testing", "Alarm Set On:"+cal.getTime());
 
         Intent intent = new Intent(MainActivity.this, ServiceClass.class);
-        PendingIntent pintent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
+        PendingIntent pintent = PendingIntent.getService(MainActivity.this, id, intent, 0);// replace 0 with id ...it cause problem in <API 21
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 10*1000, pintent); // replace 10*1000 with the repeating time in millisec
 
